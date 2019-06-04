@@ -31,8 +31,8 @@ convnet = cnn.ConvNet(
 nn = neuralnetwork.NeuralNetwork([convnet, fully_connected], loss_fn="cross_entropy")
 
 images, labels = loadlocal_mnist(
-        images_path='/Users/colinsteidtmann/openai/Mnist/train-images-idx3-ubyte', 
-        labels_path='/Users/colinsteidtmann/openai/Mnist/train-labels-idx1-ubyte')
+        images_path='train-images-idx3-ubyte', 
+        labels_path='train-labels-idx1-ubyte')
 inputs = images.reshape((-1, 28, 28, 1))
 labels_one_hot = np.zeros((len(labels), 10))
 for idx, hot_idx in enumerate(labels):
