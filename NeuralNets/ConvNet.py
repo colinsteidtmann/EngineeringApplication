@@ -203,10 +203,10 @@ class ConvNet:
 
                 if (nabla_dwb_layer_idx.size > 0 and "biases" in dx_type):
                     """Append bias deriv to the correct nabla_dwb_layer_idx location """
-                    if (nabla_dwb_layer_idx != (len(nabla_dx_layer[dx_type.index("biases")]) - 1)):
+                    if (nabla_dwb_layer_idx == (len(nabla_dx_layer[dx_type.index("biases")]) - 1)):
                         nabla_dx_layer[dx_type.index("biases")][nabla_dwb_layer_idx] = np.sum(delta_layers[-1], axis=(1, 2)).reshape((-1,) + self.bias_layers[layer_idx].shape)
                     else:
-                        """ Go back a to grad y if last bias layer """
+                        """ Go back 3 to grad y if last bias layer """
                         nabla_dx_layer[dx_type.index("biases")][nabla_dwb_layer_idx] = np.sum(delta_layers[-3], axis=(1, 2)).reshape((-1,) + self.bias_layers[layer_idx].shape)
                 
                 delta_layers.append(delta)
